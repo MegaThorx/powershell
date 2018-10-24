@@ -5,7 +5,6 @@ Powershell Basics
    :maxdepth: 1
    :glob:
 
-   introduction
    hello-world
    comments
    variables

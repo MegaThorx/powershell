@@ -1,36 +1,27 @@
-Read the Docs: Documentation Simplified
-=======================================
+Einleitung
+==========
 
-`Read the Docs`_ simplifies software documentation
-by automating building, versioning, and hosting of your docs for you.
-Think of it as *Continuous Documentation*.
+Was ist Powershell?
+-------------------
 
-Never out of sync
-    Whenever you push code to your favorite version control system,
-    whether that is Git, Mercurial, Bazaar, or Subversion,
-    Read the Docs will automatically build your docs
-    so your code and documentation are always up-to-date.
+PowerShell (auch Windows PowerShell und PowerShell Core) ist ein
+plattformübergreifendes Framework von Microsoft zur Automatisierung,
+Konfiguration und Verwaltung von Systemen, bestehend aus einem
+Kommandozeileninterpreter sowie einer Skriptsprache.
 
-Multiple versions
-    Read the Docs can host and build multiple versions of your docs
-    so having a 1.0 version of your docs and a 2.0 version
-    of your docs is as easy as having a separate branch or tag in your version control system.
+PowerShell Core (auch PSCore) basiert auf der .NET Core Common Language
+Runtime (CoreCLR) und ist seit 2016 als plattformübergreifendes
+Open-Source-Projekt unter der MIT-Lizenz für Linux, macOS und Windows
+verfügbar.
 
-Free and open source
-    Read the Docs is free and open source and hosts documentation
-    for nearly 100,000 large and small open source projects
-    in almost every human and computer language.
+Windows PowerShell basiert auf der Common Language Runtime (CLR) des
+.NET Frameworks und wird mit Windows als Teil des Windows Management
+Frameworks (WMF) unter einer proprietären Lizenz ausgeliefert. Seit 2016
+gibt es auch die Windows PowerShell als Core Edition, welche wie
+PowerShell Core auf .NET Core basiert und als Teil von Windows Nano
+Server und Windows IoT ausgeliefert wird.
 
-.. _Read the docs: http://readthedocs.org/
-
-
-First steps
------------
-
-Are you new to software documentation
-or are you looking to use your existing docs with Read the Docs?
-Learn about documentation authoring tools such as Sphinx and MkDocs
-to help you create fantastic documentation for your project.
+.. figure:: _static/images/powershell.png
 
 .. toctree::
    :maxdepth: 2
