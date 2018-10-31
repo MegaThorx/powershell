@@ -116,7 +116,6 @@ Generiere nun zusätzlich für jeden Benutzer ein Passwort und speichere es ansc
 Lösung
 ------
 
-
 .. code:: powershell
 
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
@@ -190,3 +189,72 @@ Lösung
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
     # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
     $users | Export-Csv -Path "users_with_password.csv" -NoTypeInformation -Delimiter ";" -Encoding Default
+
+Aufgabe 4
+~~~~~~~~~
+
+User im ActiveDirectory erstellen mit OUs für jede Abteilung.
+Für dieses Beispiel wird die CSV welche beim Aufgabe 3 erstellt wurde weiterverwendet.
+
+.. code::
+
+    "Abteilung";"Nachname";"Vorname";"Username";"Password"
+    "Einkauf";"Schreiber";"Florian";"fschreiber";"hB75&cfL"
+    "Einkauf";"Bayer";"Maik";"mbayer";"&w6ZUM5L"
+    "Einkauf";"Schweitzer";"Michelle";"mschweitzer";"&M7ep9PR"
+    "Einkauf";"Schweitzer";"Marco";"maschweitzer";"0M3%qpNb"
+    "Verkauf";"Seiler";"Barbara";"bseiler";"0BXeQ7!k"
+    "Verkauf";"Amsel";"Anne";"aamsel";"3WXhQ!M2"
+    "Verkauf";"Moeller";"Stefanie";"smoeller";"qF7P6!ED"
+    "Verkauf";"Moeller";"Sven";"svmoeller";"W13Cv!Pq"
+    "Verkauf";"Moeller";"Stefan";"stmoeller";"aN%36vwh"
+
+Lösung
+------
+
+.. code:: powershell
+
+    # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
+    # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
+    $allusers = Import-Csv -Delimiter ";" -Encoding Default "users_with_password.csv"
+
+    # Ermittelt alle eindeutigen Abteilungen
+    $abteilungen = $allusers.Abteilung | Get-Unique
+
+    foreach ($abteilung in $abteilungen) {
+        # Domäne ist TEST.AT und die User sollen in TEST\Users abgelegt werden
+        # der Pfad zur richtigen OU wird rückwärts angegeben
+        $path = "OU=Users,OU=TEST,DC=test,DC=at"
+
+        $filter = 'Name -eq "' + $abteilung + '"'
+
+        # Versucht das OU Objekt für die Abteilung zu bekommen
+        # falls dies fehlschlägt ist in $org kein Wert
+        $org = Get-ADOrganizationalUnit -Filter $filter -SearchBase $path
+
+        # Wenn die OU noch nicht vorhanen ist wird diese mit dem Befehl erstellt
+        if (-Not $org) {
+            New-ADOrganizationalUnit -Name $abteilung -Path $path -ProtectedFromAccidentalDeletion $False
+        }
+        
+        # Fügt die neue OU zum Pfad hinzu
+        $path = "OU=" + $abteilung + "," + $path
+
+        # Ermittelt alle User mit der gegeben Abteilung
+        $users = $allusers | Where-Object {$_.Abteilung -eq $abteilung}
+
+        foreach ($user in $users) {
+            # Mit ConverTo-SecureString wird das Passwort gehashed, da bei New-AdUser kein klartext Passwort zulässig ist.
+            $password = $user.Password | ConvertTo-SecureString -AsPlainText -Force
+            
+            # Erstellt den AdUser
+            # -Name - Username
+            # -AccountPassword - das gehashte Passwort
+            # -ChangePasswordAtLogon - das der User beim Login das Passwort ändern muss
+            # -GivenName - Vorname
+            # -Surname - Nachname
+            # -Path - Pfad im AD
+            # -Enable - Ob der Account aktiviert werden soll
+            New-AdUser -Name $user.Username -AccountPassword $password -ChangePasswordAtLogon $True -GivenName $user.Vorname -Surname $user.Nachname -Path $path -Enabled $True
+        }
+    }
