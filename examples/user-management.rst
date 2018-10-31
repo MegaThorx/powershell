@@ -31,7 +31,7 @@ Lösung
 
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
     # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
-    $users = Import-Csv -Delimiter ";" -Encoding Default  $file
+    $users = Import-Csv -Delimiter ";" -Encoding Default "users.csv"
 
     # $users.length gibt die Länge des Arrays zurück
     Write-Host "Es gibt " $users.length " User"
@@ -65,7 +65,7 @@ Lösung
 
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
     # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
-    $users = Import-Csv -Delimiter ";" -Encoding Default  $file
+    $users = Import-Csv -Delimiter ";" -Encoding Default "users.csv"
 
     # Fügt das Feld Username zu den Objekten im Array hinzu
     $users | Add-Member Username ""
@@ -77,8 +77,8 @@ Lösung
 
         # Im ersten Schritt werden alle Zeichen in Kleinbuchstaben umgewandelt und dann alle Zeichen welche im Benutzernamen nicht zulässig sind entfernt
         # hierfür wird .Replace() verwendet
-        $firstname = $user.Firstname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
-        $lastname = $user.Lastname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
+        $firstname = $user.Vorname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
+        $lastname = $user.Nachname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
 
 
         do {
@@ -107,3 +107,86 @@ Lösung
 
     # Gibt alle User aus
     Write-Host $users
+
+Aufgabe 3
+~~~~~~~~~
+
+Generiere nun zusätzlich für jeden Benutzer ein Passwort und speichere es anschließend in eine CSV zurück.
+
+Lösung
+------
+
+
+.. code:: powershell
+
+    # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
+    # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
+    $users = Import-Csv -Delimiter ";" -Encoding Default "users.csv"
+
+    # Fügt das Feld Username zu den Objekten im Array hinzu
+    $users | Add-Member Username ""
+    $users | Add-Member Password ""
+
+    
+    foreach ($user in $users) {
+        $firstname_count = 0 # wird mit 0 initialisiert da es bei der Schleife direkt erhöht wird
+        $zahl = 0
+
+        # Im ersten Schritt werden alle Zeichen in Kleinbuchstaben umgewandelt und dann alle Zeichen welche im Benutzernamen nicht zulässig sind entfernt
+        # hierfür wird .Replace() verwendet
+        $firstname = $user.Vorname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
+        $lastname = $user.Nachname.ToLower().Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("ß", "ss")
+
+
+        do {
+            # Erhöht die Anzahl der Zeichen vom Vornamen
+            $firstname_count++
+            
+            # Prüft ob die Anzahl der Zeichen vom Vornamen größer ist als die Länge des Vornamens
+            # falls ja dann wird probiert eine Zahl zwischen Vorname und Nachname einzufügen
+            if ($firstname_count -gt $firstname.length) {
+                $zahl++
+                $username = $firstname + $zahl + $lastname
+            } else {
+                # $firstname.Substring(0, X) gibt die Zeichen bis X
+                # Wenn X gleich 1 ist gibt es das erste Zeichen zurück
+                # Wenn X gleich 2 ist gibt es die ersten zwei Zeichen zurück
+                $username = $firstname.Substring(0, $firstname_count) + $lastname
+            }
+            # $users.Username erstellt wieder einen Array mit allen Benutzernamen
+            # mit -contains wird geprüft ob der Name in diesem Array existiert
+            # dadurch wird die Schleife solange wiederholt bis ein Benutzername frei ist
+        } while ($users.Username -contains $username)
+
+        # Setzt den Benutzernamen beim Objekt
+        $user.Username = $username
+
+        # Dieser Teil ist vom Beispiel "Passwort generieren"
+        <#
+            > (65..90) - ASCII Code für A-Z
+            > (97..122) - ASCII Code für a-z
+            mit ((65..90) + (97..122)) werden beide Arrays in einen neuen Array kombiniert.
+
+            > Get-Random -Count 5
+            Gibt 5 Einträge aus dem Array zurück
+
+            > ForEach-Object {[char]$_}
+            Mit [char]65 wird die Zahl in Text umgewandelt
+        #>
+        $letters = ((65..90) + (97..122) | Get-Random -Count 5 | ForEach-Object {[char]$_})
+        $numbers = ((48..57) | Get-Random -Count 2 | ForEach-Object {[char]$_})
+        $special = ((33, 35, 36, 37, 38, 64) | Get-Random -Count 1 | ForEach-Object {[char]$_})
+
+        <#
+            > Sort-Object {Get-Random}
+            Sortiert die Einträge der Arrays zufällig.
+
+            > -join
+            Kombiniert alle Einträge von den Arrays in eine Zeichenkette
+        #>
+        $user.password = -join ($letters + $numbers + $special | Sort-Object {Get-Random});
+    }
+
+    # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
+    # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
+    $users | Export-Csv -Path "users_with_password.csv" -NoTypeInformation -Delimiter ";" -Encoding Default
