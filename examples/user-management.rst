@@ -28,6 +28,7 @@ Lösung
 ------
 
 .. code:: powershell
+
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
     # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
     $users = Import-Csv -Delimiter ";" -Encoding Default  $file
@@ -61,6 +62,7 @@ Lösung
 ------
 
 .. code:: powershell
+
     # -Delimiter ";" - um den trenner zwischen den Daten in einer Zeile festzulegen
     # -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)
     $users = Import-Csv -Delimiter ";" -Encoding Default  $file
