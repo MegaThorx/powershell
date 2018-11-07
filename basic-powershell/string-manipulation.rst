@@ -37,8 +37,8 @@ Wandelt einen String in Kleinbuchstaben um.
    $text = "Hallo"
    $text.ToLower() # aus Hallo wird hallo
 
-.Contains()
------------
+.Contains(Text)
+---------------
 
 Prüft ob ein String einen bestimmte Zeichenkette enthält.
 
@@ -48,8 +48,8 @@ Prüft ob ein String einen bestimmte Zeichenkette enthält.
    $text.Contains("a") # Gibt Wahr zurück
    $text.Contains("c") # Gibt Falsch zurück
 
-.StartsWith()
--------------
+.StartsWith(Text)
+-----------------
 
 Prüft ob ein String mit bestimmte Zeichenkette beginnt.
 
@@ -59,8 +59,8 @@ Prüft ob ein String mit bestimmte Zeichenkette beginnt.
    $text.StartsWith("Ha") # Gibt Wahr zurück
    $text.StartsWith("al") # Gibt Falsch zurück
 
-.EndsWith()
------------
+.EndsWith(Text)
+---------------
 
 Prüft ob ein String mit bestimmte Zeichenkette endet.
 
@@ -70,8 +70,8 @@ Prüft ob ein String mit bestimmte Zeichenkette endet.
    $text.StartsWith("lo") # Gibt Wahr zurück
    $text.StartsWith("ll") # Gibt Falsch zurück
 
-.Replace()
-----------
+.Replace(AlterText, NeuerText)
+------------------------------
 
 Ersetzt eine bestimmte Zeichenkette in einem String mit einer anderen
 String.
@@ -86,8 +86,8 @@ String.
    $text = "Test"
    $text.Replace("es", "se") # Der neue Wert ist `Tset`
 
-.SubString()
-------------
+.SubString(StartIndex, Länge)
+-----------------------------
 
 Mit SubString kann man einen Teil eines Strings anhand der Position
 entfernen
@@ -98,8 +98,8 @@ entfernen
    $text.SubString(2) # Entfernt die ersten zwei Zeichen 'llo'
    $text.SubString(0, 2) # Gibt zwei Zeichen ab dem ersten Zeichen aus 'Ha'
 
-.TrimStart()
-------------
+.TrimStart(ZeichenZumEntfernen)
+-------------------------------
 
 Ersetzt eine bestimmte Zeichenkette am Anfang des Textes.
 
@@ -108,8 +108,8 @@ Ersetzt eine bestimmte Zeichenkette am Anfang des Textes.
    $text = "    Hallo"
    $text.TrimStart(" ") # Entfernt alle Leerzeichen am Anfang des Stringes
 
-.TrimEnd()
-----------
+.TrimEnd(ZeichenZumEntfernen)
+-----------------------------
 
 Ersetzt eine bestimmte Zeichenkette am Ende des Textes.
 

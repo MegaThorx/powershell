@@ -4,20 +4,20 @@ Hilfreiche Cmd-Lets
 Get-Help
 --------
 
-Bei Get - Help wird man hauptsächlich auf die Online Hilfe Seite von
+Bei ``Get-Help`` wird man hauptsächlich auf die Online Hilfe Seite von
 Microsoft weitergeleitet, und es werden diverse Befehlsvorlagen gezeigt.
 |image0|
 
 Get-Command
 -----------
 
-Bei Get - Command werden alle Befehle die Powershell zu Verfügung stellt
+Bei ``Get-Command`` werden alle Befehle die Powershell zu Verfügung stellt
 angezeigt. |image1|
 
 Get-Member
 ----------
 
-Mit dem Cmdlet Get - Member werden die Elemente (Eigenschaften und
+Mit dem Cmdlet ``Get-Member`` werden die Elemente (Eigenschaften und
 Methoden) von Objekten abgerufen. |image2|
 
 Übung

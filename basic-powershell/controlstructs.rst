@@ -109,9 +109,9 @@ Folgendes Beispiel überprüft, ob sowohl a den Wert 2 als auch b den Wert
 if-else
 -------
 
-Für if gibt es noch eine kleine Erweiterung: Den else-Block. Dieser
-Block wird ausgeführt, wenn die Bedingung zwischen ``if`` und ``then``
-**nicht**\ \_ nicht wahr ist. // TODO: Add elseif
+Für if gibt es noch eine kleine Erweiterung: Den ``else``-Block. Dieser
+Block wird ausgeführt, wenn die Bedingung zwischen den Klammern
+**nicht** nicht wahr ist.
 
 .. code:: powershell
 
@@ -120,6 +120,23 @@ Block wird ausgeführt, wenn die Bedingung zwischen ``if`` und ``then``
    if ($irgendwas == 42) {
        Write-Host "irgendwas riecht nach dem Sinn des Lebens"
    } else {
+       Write-Host "Nein, Leetspeak ist besser"
+   }
+
+elseif
+------
+
+Mit ``elseif`` ist es noch möglich mehrere Vergleichen hintereinander durchzuführen.
+Falls der erste Vergleich nicht wahr ergibt wird die nächste evaluiert, die ``elseif`` wird nicht erreicht falls die erste Prüfung wahr ergibt.
+Es können auch mehrere ``elseif``'s folgen.
+
+.. code:: powershell
+
+   $irgendwas = 1337
+
+   if ($irgendwas == 42) {
+       Write-Host "irgendwas riecht nach dem Sinn des Lebens"
+   } elseif ($irgendwas == 1337) {
        Write-Host "Nein, Leetspeak ist besser"
    }
 
