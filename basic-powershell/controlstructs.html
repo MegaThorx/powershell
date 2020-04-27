@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Kontrollstrukturen &mdash; Powershell Guide  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Hilfreiche Cmd-Lets" href="helpful-cmd-lets.html" />
+    <link rel="prev" title="Variablen und Datentypen" href="variables.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Powershell Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Powershell Basics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello-world.html">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Kommentare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html">Variablen und Datentypen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Kontrollstrukturen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#if-bedingung">if-Bedingung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vergleichsoperatoren">Vergleichsoperatoren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logische-junktoren">Logische Junktoren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-else">if-else</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elseif">elseif</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#while-schleife">while-Schleife</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-while-schleife">do-while-Schleife</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-schleife">for-Schleife</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foreach-schleife">foreach-Schleife</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foreach-object">ForEach-Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#break-schleife-abbrechen">break - Schleife abbrechen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ubung">Übung</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#teil-1-verstandnisfragen">Teil 1: Verständnisfragen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#teil-2-umformen-zwischen-schleifentypen">Teil 2: Umformen zwischen Schleifentypen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="helpful-cmd-lets.html">Hilfreiche Cmd-Lets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ps1-files.html">Speichern von Skripten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string-manipulation.html">String Manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="try-catch.html">Try-Catch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="piping.html">Piping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Funktionen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Beispiele</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Powershell Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Powershell Basics</a> &raquo;</li>
+        
+      <li>Kontrollstrukturen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/basic-powershell/controlstructs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="kontrollstrukturen">
+<h1>Kontrollstrukturen<a class="headerlink" href="#kontrollstrukturen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Bisher haben wir nur Variablen definiert und auf der Konsole ausgegeben.
+Damit lässt sich natürlich noch nicht viel machen; vor allem, weil wir
+nicht in der Lage sind Fallunterscheidungen zu machen oder bestimmte
+Codeteile zu wiederholen.</p>
+<div class="section" id="if-bedingung">
+<h2>if-Bedingung<a class="headerlink" href="#if-bedingung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Jeder, der schonmal etwas mit Programmierung zu tun hatte kennt sie: Die
+if-Bedingung. Mit der if-Bedingung/-Verzweigung lässt ein bestimmter
+Codeteil ausführen, wenn eine Bedingung wahr (oder nicht wahr) ist.</p>
+<p>So kann mit if-Bedingungen z.B. geprüft werden, ob eine vorher
+definierte Variable einen bestimmten Wert hat und wenn dies der Fall
+ist, wird etwas auf der Konsole ausgegeben:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Irgendwas definieren</span>
+<span class="nv">$irgendwas</span> <span class="p">=</span> <span class="n">5</span>
+
+<span class="c"># Jetzt mit der if-Bedingung prüfen, ob irgendwas den Wert 5 hat</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$irgendwas</span> <span class="o">-eq</span> <span class="n">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;Die Variable irgendwas hat den Wert 5&quot;</span>
+<span class="p">}</span>
+
+<span class="c"># Eine andere Bedingung, die womöglich? nicht wahr ist</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$irgendwas</span> <span class="o">-eq</span> <span class="n">42</span><span class="p">)</span> <span class="n">then</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;Die Variable hat den Wert 42&quot;</span>
+<span class="k">end</span>
+
+<span class="c"># Natürlich muss man die Variable nicht mit einem Literal vergleichen,</span>
+<span class="c"># sondern kann sie auch mit einer anderen Variablen vergleichen</span>
+<span class="nv">$andere_variable</span> <span class="p">=</span> <span class="nv">$irgendwas</span> <span class="c"># Wert von &#39;$irgendwas&#39; der Variable &#39;$andere_variable&#39; zuweisen</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$andere_variable</span> <span class="o">-eq</span> <span class="nv">$irgendwas</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;irgendwas und andere_variable haben denselben Wert!&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Wie hoffentlich durch das Beispiel klar geworden ist, steht nach dem
+<code class="docutils literal notranslate"><span class="pre">if</span></code> in Klammern <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> die Bedingung und zwischen dem <code class="docutils literal notranslate"><span class="pre">{</span></code> und dem
+<code class="docutils literal notranslate"><span class="pre">}</span></code> der Code, der ausgeführt wird, wenn die Bedingung wahr (<code class="docutils literal notranslate"><span class="pre">true</span></code>)
+ist.</p>
+<p>Bei Vergleichen muss <strong>immer</strong> der <code class="docutils literal notranslate"><span class="pre">-eq</span></code>-Operator verwendet werden.</p>
+</div>
+<div class="section" id="vergleichsoperatoren">
+<h2>Vergleichsoperatoren<a class="headerlink" href="#vergleichsoperatoren" title="Link zu dieser Überschrift">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Vergleichsoperator</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a <code class="docutils literal notranslate"><span class="pre">-eq</span></code> b</p></td>
+<td><p>Prüft a und b auf Gleichheit,
+<strong>true</strong> falls gleich, <strong>false</strong>
+andernfalls</p></td>
+</tr>
+<tr class="row-odd"><td><p>a <code class="docutils literal notranslate"><span class="pre">-ne</span></code> b</p></td>
+<td><p>Prüft a und b auf Ungleichheit</p></td>
+</tr>
+<tr class="row-even"><td><p>a <code class="docutils literal notranslate"><span class="pre">-gt</span></code> b</p></td>
+<td><p>Wahr, wenn a (echt) kleiner als b
+ist</p></td>
+</tr>
+<tr class="row-odd"><td><p>a <code class="docutils literal notranslate"><span class="pre">-ge</span></code> b</p></td>
+<td><p>Wahr, wenn a kleiner oder gleich
+b ist</p></td>
+</tr>
+<tr class="row-even"><td><p>a <code class="docutils literal notranslate"><span class="pre">-lt</span></code> b</p></td>
+<td><p>Wahr, wenn a (echt) größer als b
+ist</p></td>
+</tr>
+<tr class="row-odd"><td><p>a <code class="docutils literal notranslate"><span class="pre">-le</span></code> b</p></td>
+<td><p>Wahr, wenn a größer oder gleich b
+ist</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="logische-junktoren">
+<h2>Logische Junktoren<a class="headerlink" href="#logische-junktoren" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es reicht meistens nicht nur eine einzelne Sachen abzufragen. Man möchte
+oft mehrere einzelne Abfragen miteinander verknüpfen.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Junktor</p></th>
+<th class="head"><p>Beschreibung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a <code class="docutils literal notranslate"><span class="pre">-and</span></code> b</p></td>
+<td><p>Prüft, ob wohl a <strong>als auch</strong> b
+wahr sind</p></td>
+</tr>
+<tr class="row-odd"><td><p>a <code class="docutils literal notranslate"><span class="pre">-or</span></code> b</p></td>
+<td><p>Prüft a oder b wahr ist</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-not</span></code> a</p></td>
+<td><p>Negiert a, d.h. <code class="docutils literal notranslate"><span class="pre">true</span></code> wird zu
+<code class="docutils literal notranslate"><span class="pre">false</span></code> und <code class="docutils literal notranslate"><span class="pre">false</span></code> zu
+<code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Folgendes Beispiel überprüft, ob sowohl a den Wert 2 als auch b den Wert
+3 hat</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># a und b definieren</span>
+<span class="nv">$a</span> <span class="p">=</span> <span class="n">2</span>
+<span class="nv">$b</span> <span class="p">=</span> <span class="n">4</span>
+<span class="c"># erster Ausdruck wird wahr sein, zweiter nicht</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$a</span> <span class="o">-eq</span> <span class="n">2</span> <span class="o">-and</span> <span class="nv">$b</span> <span class="o">-eq</span> <span class="n">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;a ist 2 und b ist 3&quot;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;Gilt nicht&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="if-else">
+<h2>if-else<a class="headerlink" href="#if-else" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für if gibt es noch eine kleine Erweiterung: Den <code class="docutils literal notranslate"><span class="pre">else</span></code>-Block. Dieser
+Block wird ausgeführt, wenn die Bedingung zwischen den Klammern
+<strong>nicht</strong> nicht wahr ist.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$irgendwas</span> <span class="p">=</span> <span class="n">1337</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$irgendwas</span> <span class="p">==</span> <span class="n">42</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;irgendwas riecht nach dem Sinn des Lebens&quot;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;Nein, Leetspeak ist besser&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="elseif">
+<h2>elseif<a class="headerlink" href="#elseif" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">elseif</span></code> ist es noch möglich mehrere Vergleichen hintereinander durchzuführen.
+Falls der erste Vergleich nicht wahr ergibt wird die nächste evaluiert, die <code class="docutils literal notranslate"><span class="pre">elseif</span></code> wird nicht erreicht falls die erste Prüfung wahr ergibt.
+Es können auch mehrere <code class="docutils literal notranslate"><span class="pre">elseif</span></code>’s folgen.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$irgendwas</span> <span class="p">=</span> <span class="n">1337</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$irgendwas</span> <span class="p">==</span> <span class="n">42</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;irgendwas riecht nach dem Sinn des Lebens&quot;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$irgendwas</span> <span class="p">==</span> <span class="n">1337</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="s2">&quot;Nein, Leetspeak ist besser&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="while-schleife">
+<h2>while-Schleife<a class="headerlink" href="#while-schleife" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die wohl wichtigste, aber nicht am meisten verwendet Schleife ist die
+<strong>while</strong>-Schleife. Sie führt einen Codeteil (= Block) so lange aus wie
+eine Bedingung wahr ist.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Zähler definieren</span>
+<span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="n">1</span>
+
+<span class="c"># Schleife so lange ausführen wie der Zähler kleiner als 5 ist</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$mein_zaehler</span> <span class="o">-lt</span> <span class="n">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c"># Zähler ausgeben</span>
+    <span class="nb">Write-Host</span> <span class="nv">$mein_zaehler</span>
+
+    <span class="c"># Zähler erhöhen (= inkrementieren)</span>
+    <span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="nv">$mein_zaehler</span> <span class="p">+</span> <span class="n">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Achte immer darauf, dass eine Bedingung auch eintritt, ansonsten
+verharrt das Skript in einer sog. Endlosschleife und kommt (theoretisch)
+nie zum Ende.</p>
+<p>Mit einer while-Schleife lassen sich alle anderen Schleifentypen
+nachbauen, jedoch erlauben andere Schleifentypen in vielen Fällen eine
+kürzere und elegantere Lösung.</p>
+</div>
+<div class="section" id="do-while-schleife">
+<h2>do-while-Schleife<a class="headerlink" href="#do-while-schleife" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die do-while Schleife unterscheidet sich von der <code class="docutils literal notranslate"><span class="pre">while</span></code> dadurch das
+sie immer das erste Mal ausgeführt wird und zum wiederholen die
+Bedingung geprüft wird.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Zähler definieren</span>
+<span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="n">1</span>
+
+<span class="c"># Schleife so lange ausführen wie der Zähler kleiner als 5 ist</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="c"># Zähler ausgeben</span>
+    <span class="nb">Write-Host</span> <span class="nv">$mein_zaehler</span>
+
+    <span class="c"># Zähler erhöhen (= inkrementieren)</span>
+    <span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="nv">$mein_zaehler</span> <span class="p">+</span> <span class="n">1</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$mein_zaehler</span> <span class="o">-lt</span> <span class="n">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="for-schleife">
+<h2>for-Schleife<a class="headerlink" href="#for-schleife" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die for-Schleife ist mit guten Grund die weitverwendetste Schleife.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># Einen Zähler von 1 bis 4 laufen lassen</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="n">1</span><span class="p">;</span> <span class="nv">$mein_zaehler</span> <span class="o">-le</span> <span class="n">4</span><span class="p">;</span> <span class="nv">$mein_zaehler</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="nv">$mein_zaehler</span>
+<span class="p">}</span>
+
+<span class="c"># alternativ kann auch die Schrittgröße beim Hochzählen angegeben werden</span>
+<span class="c"># (negative Schritte sind ebenfalls möglich)</span>
+<span class="nb">Write-Host</span> <span class="s2">&quot;&quot;</span> <span class="c"># leere Zeile ausgeben</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$mein_zaehler</span> <span class="p">=</span> <span class="n">1</span><span class="p">;</span> <span class="nv">$mein_zaehler</span> <span class="o">-le</span> <span class="n">3</span><span class="p">;</span> <span class="nv">$mein_zaehler</span> <span class="p">+=</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="nv">$mein_zaehler</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foreach-schleife">
+<h2>foreach-Schleife<a class="headerlink" href="#foreach-schleife" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit der foreach-Schleife kann man sehr einfach mit Arrays arbeiten.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$zahlen</span> <span class="p">=</span> <span class="p">(</span><span class="n">1</span><span class="p">..</span><span class="n">10</span><span class="p">)</span>
+
+<span class="c"># Das Programm geht durch alle Zahlen, multipliziert diese und gibt es aus.</span>
+<span class="c"># Es wird immer ein Wert aus dem Array genommen und in die Variable $zahl geschrieben</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$zahl</span> <span class="k">in</span> <span class="nv">$zahlen</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="nv">$zahl</span> <span class="p">*</span> <span class="n">2</span>
+<span class="p">}</span>
+
+<span class="nv">$processes</span> <span class="p">=</span> <span class="nb">Get-Process</span> <span class="c"># Lädt alle laufende Prozesse in eine Variable</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$process</span> <span class="k">in</span> <span class="nv">$processes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c"># Gibt die Namen der Prozesse aus</span>
+    <span class="nb">Write-Host</span> <span class="nv">$process</span><span class="p">.</span><span class="n">Name</span>
+<span class="p">}</span>
+
+<span class="nv">$processes</span> <span class="p">=</span> <span class="nb">Get-Process</span>
+
+<span class="nv">$processes</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nb">Write-Host</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foreach-object">
+<h2>ForEach-Object<a class="headerlink" href="#foreach-object" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dem <code class="docutils literal notranslate"><span class="pre">ForEach-Object</span></code> funktioniert gleich wie die <code class="docutils literal notranslate"><span class="pre">foreach</span></code> und
+wird über Piping verwendet.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$processes</span> <span class="p">=</span> <span class="nb">Get-Process</span>
+<span class="nv">$processes</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nb">Write-Host</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="break-schleife-abbrechen">
+<h2>break - Schleife abbrechen<a class="headerlink" href="#break-schleife-abbrechen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alle Schleifen können wie folgt mit dem Schlüssekwort <code class="docutils literal notranslate"><span class="pre">break</span></code>
+abgebrochen werden.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-le</span> <span class="n">10</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="nv">$i</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-eq</span> <span class="n">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ubung">
+<h2>Übung<a class="headerlink" href="#ubung" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="teil-1-verstandnisfragen">
+<h3>Teil 1: Verständnisfragen<a class="headerlink" href="#teil-1-verstandnisfragen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im ersten Teil der Übung sollen Verständnisfragen beantwortet werden.</p>
+<ol class="arabic simple">
+<li><p>Was ist der Unterschied zwischen einer if-Bedingung und einer
+Schleife?</p></li>
+<li><p>Was ist der Unterschied zwischen einer for- und while Schleife?</p></li>
+<li><p>Kann man mit einem Schleifentyp allen anderen Typen darstellen? Falls
+ja, mit welcher zum Beispiel?</p></li>
+</ol>
+<div class="section" id="losung">
+<h4>Lösung<a class="headerlink" href="#losung" title="Link zu dieser Überschrift">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Eine if-Bedingung prüft nur <strong>einmalig</strong> die Bedingung, wohingegen
+eine Schleife eine Bedingung überprüft und dann einen Vorgang z.B.
+bis zum Eintreten der Bedingung wiederholt</p></li>
+<li><p>Eine for-Schleife verwendet immer einen Zähler und zählt bis zum
+Erreichen eines festgelegten Wertes. Eine while-Schleife führt Code
+so lange aus bis eine Bedingung nicht mehr eintritt</p></li>
+<li><p>Ja, z.B. mit der while-Schleife lassen sich alle anderen Schleifen
+darstellen (siehe Teil 2)</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="teil-2-umformen-zwischen-schleifentypen">
+<h3>Teil 2: Umformen zwischen Schleifentypen<a class="headerlink" href="#teil-2-umformen-zwischen-schleifentypen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Wie in <em>Teil 1</em> schon angekündigt wurde lassen sich alle Schleifentypen
+ineinander mehr oder weniger problemlos überführen (wobei die
+for-Schleife einen Sonderfall darstellt)</p>
+<p>In dieser Aufgabe soll nun folgende while-Schleife jeweils in eine
+do-while Schleife und for-Schleife überführt werden:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$i</span> <span class="p">=</span> <span class="n">50</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-ne</span> <span class="p">-</span><span class="n">10</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$i</span> <span class="p">=</span> <span class="nv">$i</span> <span class="p">-</span> <span class="n">2</span>
+    <span class="nb">Write-Host</span> <span class="nv">$i</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c">## do-while</span>
+<span class="nv">$i</span> <span class="p">=</span> <span class="n">50</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="nv">$i</span> <span class="p">=</span> <span class="nv">$i</span> <span class="p">-</span> <span class="n">2</span>
+    <span class="nb">Write-Host</span> <span class="nv">$i</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">-ne</span> <span class="p">-</span><span class="n">10</span><span class="p">)</span>
+
+<span class="c"># for</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="p">=</span> <span class="n">50</span><span class="p">-</span><span class="n">2</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-ne</span> <span class="p">-</span><span class="n">12</span><span class="p">;</span> <span class="nv">$i</span> <span class="p">-=</span> <span class="n">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">Write-Host</span> <span class="nv">$i</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="helpful-cmd-lets.html" class="btn btn-neutral float-right" title="Hilfreiche Cmd-Lets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="variables.html" class="btn btn-neutral float-left" title="Variablen und Datentypen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert B.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

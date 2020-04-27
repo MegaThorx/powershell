@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Userverwaltung &mdash; Powershell Guide  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="prev" title="Zapfenrechnen" href="tower-calculation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Powershell Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic-powershell/index.html">Powershell Basics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Beispiele</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="io-example.html">Ein-/Ausgabe von Daten (Read-Host)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="password-generation.html">Passwort generieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tower-calculation.html">Zapfenrechnen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Userverwaltung</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#aufgabe-1">Aufgabe 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#losung">Lösung</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aufgabe-2">Aufgabe 2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Lösung</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aufgabe-3">Aufgabe 3</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Lösung</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aufgabe-4">Aufgabe 4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Lösung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Powershell Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Beispiele</a> &raquo;</li>
+        
+      <li>Userverwaltung</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/examples/user-management.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="userverwaltung">
+<h1>Userverwaltung<a class="headerlink" href="#userverwaltung" title="Link zu dieser Überschrift">¶</a></h1>
+<p>In diesem Tutorial erstellen wir eine Userverwaltung.</p>
+<p>Erstelle eine neue Datei mit dem folgenden Inhalt und speichere diese als <strong>.csv</strong> ab.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Abteilung</span><span class="p">;</span><span class="n">Nachname</span><span class="p">;</span><span class="n">Vorname</span>
+<span class="n">Einkauf</span><span class="p">;</span><span class="n">Schreiber</span><span class="p">;</span><span class="n">Florian</span>
+<span class="n">Einkauf</span><span class="p">;</span><span class="n">Bayer</span><span class="p">;</span><span class="n">Maik</span>
+<span class="n">Einkauf</span><span class="p">;</span><span class="n">Schweitzer</span><span class="p">;</span><span class="n">Michelle</span>
+<span class="n">Einkauf</span><span class="p">;</span><span class="n">Schweitzer</span><span class="p">;</span><span class="n">Marco</span>
+<span class="n">Verkauf</span><span class="p">;</span><span class="n">Seiler</span><span class="p">;</span><span class="n">Barbara</span>
+<span class="n">Verkauf</span><span class="p">;</span><span class="n">Amsel</span><span class="p">;</span><span class="n">Anne</span>
+<span class="n">Verkauf</span><span class="p">;</span><span class="n">Moeller</span><span class="p">;</span><span class="n">Stefanie</span>
+<span class="n">Verkauf</span><span class="p">;</span><span class="n">Moeller</span><span class="p">;</span><span class="n">Sven</span>
+<span class="n">Verkauf</span><span class="p">;</span><span class="n">Moeller</span><span class="p">;</span><span class="n">Stefan</span>
+</pre></div>
+</div>
+<div class="section" id="aufgabe-1">
+<h2>Aufgabe 1<a class="headerlink" href="#aufgabe-1" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Lade die CSV mit dem Befehl <code class="docutils literal notranslate"><span class="pre">Import-Csv</span></code> und gib die Länge der Liste aus.
+Zusätzlich gebe jeden Nachname aus (keine duplikate).</p>
+<div class="section" id="losung">
+<h3>Lösung<a class="headerlink" href="#losung" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># -Delimiter &quot;;&quot; - um den trenner zwischen den Daten in einer Zeile festzulegen</span>
+<span class="c"># -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)</span>
+<span class="nv">$users</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span> <span class="n">-Encoding</span> <span class="k">Default</span> <span class="s2">&quot;users.csv&quot;</span>
+
+<span class="c"># $users.length gibt die Länge des Arrays zurück</span>
+<span class="nb">Write-Host</span> <span class="s2">&quot;Es gibt &quot;</span> <span class="nv">$users</span><span class="p">.</span><span class="n">length</span> <span class="s2">&quot; User&quot;</span>
+
+<span class="c"># Mit $users.Nachname wird ein neuer Array erzeugt in welchem nur die Nachname sind</span>
+<span class="c"># Dabei exisiteren aber noch die Duplikate</span>
+<span class="nv">$lastnames</span> <span class="p">=</span> <span class="nv">$users</span><span class="p">.</span><span class="n">Nachname</span>
+
+<span class="c"># Mit diesem Befehl kann ich nun die eindeutigen Nachnamen ermitteln</span>
+<span class="nv">$lastnames</span> <span class="p">=</span> <span class="nv">$lastnames</span> <span class="p">|</span> <span class="nb">Get-Unique</span>
+
+<span class="nb">Write-Host</span> <span class="nv">$lastnames</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aufgabe-2">
+<h2>Aufgabe 2<a class="headerlink" href="#aufgabe-2" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Generiere die Benutzernamen für alle Benutzer.</p>
+<p>Dabei gibt es die folgenden Reglen:
+- keine Duplikate
+- erstes Zeichen von Vorname + Nachname
+- falls dies nicht möglich ist zwei Zeichen usw..
+- falls dies nicht geht soll eine Zahl zwischen dem ganzen Vor- und Nachname eingefügt werden.</p>
+<div class="section" id="id1">
+<h3>Lösung<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># -Delimiter &quot;;&quot; - um den trenner zwischen den Daten in einer Zeile festzulegen</span>
+<span class="c"># -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)</span>
+<span class="nv">$users</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span> <span class="n">-Encoding</span> <span class="k">Default</span> <span class="s2">&quot;users.csv&quot;</span>
+
+<span class="c"># Fügt das Feld Username zu den Objekten im Array hinzu</span>
+<span class="nv">$users</span> <span class="p">|</span> <span class="nb">Add-Member</span> <span class="n">Username</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$user</span> <span class="k">in</span> <span class="nv">$users</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$firstname_count</span> <span class="p">=</span> <span class="n">0</span> <span class="c"># wird mit 0 initialisiert da es bei der Schleife direkt erhöht wird</span>
+    <span class="nv">$zahl</span> <span class="p">=</span> <span class="n">0</span>
+
+    <span class="c"># Im ersten Schritt werden alle Zeichen in Kleinbuchstaben umgewandelt und dann alle Zeichen welche im Benutzernamen nicht zulässig sind entfernt</span>
+    <span class="c"># hierfür wird .Replace() verwendet</span>
+    <span class="nv">$firstname</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Vorname</span><span class="p">.</span><span class="n">ToLower</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ä&quot;</span><span class="p">,</span> <span class="s2">&quot;ae&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ö&quot;</span><span class="p">,</span> <span class="s2">&quot;oe&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ü&quot;</span><span class="p">,</span> <span class="s2">&quot;ue&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ß&quot;</span><span class="p">,</span> <span class="s2">&quot;ss&quot;</span><span class="p">)</span>
+    <span class="nv">$lastname</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Nachname</span><span class="p">.</span><span class="n">ToLower</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ä&quot;</span><span class="p">,</span> <span class="s2">&quot;ae&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ö&quot;</span><span class="p">,</span> <span class="s2">&quot;oe&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ü&quot;</span><span class="p">,</span> <span class="s2">&quot;ue&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ß&quot;</span><span class="p">,</span> <span class="s2">&quot;ss&quot;</span><span class="p">)</span>
+
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="c"># Erhöht die Anzahl der Zeichen vom Vornamen</span>
+        <span class="nv">$firstname_count</span><span class="p">++</span>
+
+        <span class="c"># Prüft ob die Anzahl der Zeichen vom Vornamen größer ist als die Länge des Vornamens</span>
+        <span class="c"># falls ja dann wird probiert eine Zahl zwischen Vorname und Nachname einzufügen</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$firstname_count</span> <span class="o">-gt</span> <span class="nv">$firstname</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$zahl</span><span class="p">++</span>
+            <span class="nv">$username</span> <span class="p">=</span> <span class="nv">$firstname</span> <span class="p">+</span> <span class="nv">$zahl</span> <span class="p">+</span> <span class="nv">$lastname</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c"># $firstname.Substring(0, X) gibt die Zeichen bis X</span>
+            <span class="c"># Wenn X gleich 1 ist gibt es das erste Zeichen zurück</span>
+            <span class="c"># Wenn X gleich 2 ist gibt es die ersten zwei Zeichen zurück</span>
+            <span class="nv">$username</span> <span class="p">=</span> <span class="nv">$firstname</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="nv">$firstname_count</span><span class="p">)</span> <span class="p">+</span> <span class="nv">$lastname</span>
+        <span class="p">}</span>
+        <span class="c"># $users.Username erstellt wieder einen Array mit allen Benutzernamen</span>
+        <span class="c"># mit -contains wird geprüft ob der Name in diesem Array existiert</span>
+        <span class="c"># dadurch wird die Schleife solange wiederholt bis ein Benutzername frei ist</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$users</span><span class="p">.</span><span class="n">Username</span> <span class="o">-contains</span> <span class="nv">$username</span><span class="p">)</span>
+
+    <span class="c"># Setzt den Benutzernamen beim Objekt</span>
+    <span class="nv">$user</span><span class="p">.</span><span class="n">Username</span> <span class="p">=</span> <span class="nv">$username</span>
+<span class="p">}</span>
+
+<span class="c"># Gibt alle User aus</span>
+<span class="nb">Write-Host</span> <span class="nv">$users</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aufgabe-3">
+<h2>Aufgabe 3<a class="headerlink" href="#aufgabe-3" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Generiere nun zusätzlich für jeden Benutzer ein Passwort und speichere es anschließend in eine CSV zurück.</p>
+<div class="section" id="id2">
+<h3>Lösung<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># -Delimiter &quot;;&quot; - um den trenner zwischen den Daten in einer Zeile festzulegen</span>
+<span class="c"># -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)</span>
+<span class="nv">$users</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span> <span class="n">-Encoding</span> <span class="k">Default</span> <span class="s2">&quot;users.csv&quot;</span>
+
+<span class="c"># Fügt das Feld Username zu den Objekten im Array hinzu</span>
+<span class="nv">$users</span> <span class="p">|</span> <span class="nb">Add-Member</span> <span class="n">Username</span> <span class="s2">&quot;&quot;</span>
+<span class="nv">$users</span> <span class="p">|</span> <span class="nb">Add-Member</span> <span class="n">Password</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$user</span> <span class="k">in</span> <span class="nv">$users</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$firstname_count</span> <span class="p">=</span> <span class="n">0</span> <span class="c"># wird mit 0 initialisiert da es bei der Schleife direkt erhöht wird</span>
+    <span class="nv">$zahl</span> <span class="p">=</span> <span class="n">0</span>
+
+    <span class="c"># Im ersten Schritt werden alle Zeichen in Kleinbuchstaben umgewandelt und dann alle Zeichen welche im Benutzernamen nicht zulässig sind entfernt</span>
+    <span class="c"># hierfür wird .Replace() verwendet</span>
+    <span class="nv">$firstname</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Vorname</span><span class="p">.</span><span class="n">ToLower</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ä&quot;</span><span class="p">,</span> <span class="s2">&quot;ae&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ö&quot;</span><span class="p">,</span> <span class="s2">&quot;oe&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ü&quot;</span><span class="p">,</span> <span class="s2">&quot;ue&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ß&quot;</span><span class="p">,</span> <span class="s2">&quot;ss&quot;</span><span class="p">)</span>
+    <span class="nv">$lastname</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Nachname</span><span class="p">.</span><span class="n">ToLower</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ä&quot;</span><span class="p">,</span> <span class="s2">&quot;ae&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ö&quot;</span><span class="p">,</span> <span class="s2">&quot;oe&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ü&quot;</span><span class="p">,</span> <span class="s2">&quot;ue&quot;</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;ß&quot;</span><span class="p">,</span> <span class="s2">&quot;ss&quot;</span><span class="p">)</span>
+
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="c"># Erhöht die Anzahl der Zeichen vom Vornamen</span>
+        <span class="nv">$firstname_count</span><span class="p">++</span>
+
+        <span class="c"># Prüft ob die Anzahl der Zeichen vom Vornamen größer ist als die Länge des Vornamens</span>
+        <span class="c"># falls ja dann wird probiert eine Zahl zwischen Vorname und Nachname einzufügen</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$firstname_count</span> <span class="o">-gt</span> <span class="nv">$firstname</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$zahl</span><span class="p">++</span>
+            <span class="nv">$username</span> <span class="p">=</span> <span class="nv">$firstname</span> <span class="p">+</span> <span class="nv">$zahl</span> <span class="p">+</span> <span class="nv">$lastname</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c"># $firstname.Substring(0, X) gibt die Zeichen bis X</span>
+            <span class="c"># Wenn X gleich 1 ist gibt es das erste Zeichen zurück</span>
+            <span class="c"># Wenn X gleich 2 ist gibt es die ersten zwei Zeichen zurück</span>
+            <span class="nv">$username</span> <span class="p">=</span> <span class="nv">$firstname</span><span class="p">.</span><span class="n">Substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="nv">$firstname_count</span><span class="p">)</span> <span class="p">+</span> <span class="nv">$lastname</span>
+        <span class="p">}</span>
+        <span class="c"># $users.Username erstellt wieder einen Array mit allen Benutzernamen</span>
+        <span class="c"># mit -contains wird geprüft ob der Name in diesem Array existiert</span>
+        <span class="c"># dadurch wird die Schleife solange wiederholt bis ein Benutzername frei ist</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$users</span><span class="p">.</span><span class="n">Username</span> <span class="o">-contains</span> <span class="nv">$username</span><span class="p">)</span>
+
+    <span class="c"># Setzt den Benutzernamen beim Objekt</span>
+    <span class="nv">$user</span><span class="p">.</span><span class="n">Username</span> <span class="p">=</span> <span class="nv">$username</span>
+
+    <span class="c"># Dieser Teil ist vom Beispiel &quot;Passwort generieren&quot;</span>
+    <span class="cm">&lt;#</span>
+<span class="cm">        &gt; (65..90) - ASCII Code für A-Z</span>
+<span class="cm">        &gt; (97..122) - ASCII Code für a-z</span>
+<span class="cm">        mit ((65..90) + (97..122)) werden beide Arrays in einen neuen Array kombiniert.</span>
+
+<span class="cm">        &gt; Get-Random -Count 5</span>
+<span class="cm">        Gibt 5 Einträge aus dem Array zurück</span>
+
+<span class="cm">        &gt; ForEach-Object {[char]$_}</span>
+<span class="cm">        Mit [char]65 wird die Zahl in Text umgewandelt</span>
+<span class="cm">    #&gt;</span>
+    <span class="nv">$letters</span> <span class="p">=</span> <span class="p">((</span><span class="n">65</span><span class="p">..</span><span class="n">90</span><span class="p">)</span> <span class="p">+</span> <span class="p">(</span><span class="n">97</span><span class="p">..</span><span class="n">122</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Get-Random</span> <span class="n">-Count</span> <span class="n">5</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="no">[char]</span><span class="nv">$_</span><span class="p">})</span>
+    <span class="nv">$numbers</span> <span class="p">=</span> <span class="p">((</span><span class="n">48</span><span class="p">..</span><span class="n">57</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Get-Random</span> <span class="n">-Count</span> <span class="n">2</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="no">[char]</span><span class="nv">$_</span><span class="p">})</span>
+    <span class="nv">$special</span> <span class="p">=</span> <span class="p">((</span><span class="n">33</span><span class="p">,</span> <span class="n">35</span><span class="p">,</span> <span class="n">36</span><span class="p">,</span> <span class="n">37</span><span class="p">,</span> <span class="n">38</span><span class="p">,</span> <span class="n">64</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Get-Random</span> <span class="n">-Count</span> <span class="n">1</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="no">[char]</span><span class="nv">$_</span><span class="p">})</span>
+
+    <span class="cm">&lt;#</span>
+<span class="cm">        &gt; Sort-Object {Get-Random}</span>
+<span class="cm">        Sortiert die Einträge der Arrays zufällig.</span>
+
+<span class="cm">        &gt; -join</span>
+<span class="cm">        Kombiniert alle Einträge von den Arrays in eine Zeichenkette</span>
+<span class="cm">    #&gt;</span>
+    <span class="nv">$user</span><span class="p">.</span><span class="n">password</span> <span class="p">=</span> <span class="n">-join</span> <span class="p">(</span><span class="nv">$letters</span> <span class="p">+</span> <span class="nv">$numbers</span> <span class="p">+</span> <span class="nv">$special</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="p">{</span><span class="nb">Get-Random</span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c"># -Delimiter &quot;;&quot; - um den trenner zwischen den Daten in einer Zeile festzulegen</span>
+<span class="c"># -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)</span>
+<span class="nv">$users</span> <span class="p">|</span> <span class="nb">Export-Csv</span> <span class="n">-Path</span> <span class="s2">&quot;users_with_password.csv&quot;</span> <span class="n">-NoTypeInformation</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span> <span class="n">-Encoding</span> <span class="k">Default</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aufgabe-4">
+<h2>Aufgabe 4<a class="headerlink" href="#aufgabe-4" title="Link zu dieser Überschrift">¶</a></h2>
+<p>User im ActiveDirectory erstellen mit OUs für jede Abteilung.
+Für dieses Beispiel wird die CSV welche beim Aufgabe 3 erstellt wurde weiterverwendet.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Abteilung&quot;</span><span class="p">;</span><span class="s2">&quot;Nachname&quot;</span><span class="p">;</span><span class="s2">&quot;Vorname&quot;</span><span class="p">;</span><span class="s2">&quot;Username&quot;</span><span class="p">;</span><span class="s2">&quot;Password&quot;</span>
+<span class="s2">&quot;Einkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Schreiber&quot;</span><span class="p">;</span><span class="s2">&quot;Florian&quot;</span><span class="p">;</span><span class="s2">&quot;fschreiber&quot;</span><span class="p">;</span><span class="s2">&quot;hB75&amp;cfL&quot;</span>
+<span class="s2">&quot;Einkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Bayer&quot;</span><span class="p">;</span><span class="s2">&quot;Maik&quot;</span><span class="p">;</span><span class="s2">&quot;mbayer&quot;</span><span class="p">;</span><span class="s2">&quot;&amp;w6ZUM5L&quot;</span>
+<span class="s2">&quot;Einkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Schweitzer&quot;</span><span class="p">;</span><span class="s2">&quot;Michelle&quot;</span><span class="p">;</span><span class="s2">&quot;mschweitzer&quot;</span><span class="p">;</span><span class="s2">&quot;&amp;M7ep9PR&quot;</span>
+<span class="s2">&quot;Einkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Schweitzer&quot;</span><span class="p">;</span><span class="s2">&quot;Marco&quot;</span><span class="p">;</span><span class="s2">&quot;maschweitzer&quot;</span><span class="p">;</span><span class="s2">&quot;0M3%qpNb&quot;</span>
+<span class="s2">&quot;Verkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Seiler&quot;</span><span class="p">;</span><span class="s2">&quot;Barbara&quot;</span><span class="p">;</span><span class="s2">&quot;bseiler&quot;</span><span class="p">;</span><span class="s2">&quot;0BXeQ7!k&quot;</span>
+<span class="s2">&quot;Verkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Amsel&quot;</span><span class="p">;</span><span class="s2">&quot;Anne&quot;</span><span class="p">;</span><span class="s2">&quot;aamsel&quot;</span><span class="p">;</span><span class="s2">&quot;3WXhQ!M2&quot;</span>
+<span class="s2">&quot;Verkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Moeller&quot;</span><span class="p">;</span><span class="s2">&quot;Stefanie&quot;</span><span class="p">;</span><span class="s2">&quot;smoeller&quot;</span><span class="p">;</span><span class="s2">&quot;qF7P6!ED&quot;</span>
+<span class="s2">&quot;Verkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Moeller&quot;</span><span class="p">;</span><span class="s2">&quot;Sven&quot;</span><span class="p">;</span><span class="s2">&quot;svmoeller&quot;</span><span class="p">;</span><span class="s2">&quot;W13Cv!Pq&quot;</span>
+<span class="s2">&quot;Verkauf&quot;</span><span class="p">;</span><span class="s2">&quot;Moeller&quot;</span><span class="p">;</span><span class="s2">&quot;Stefan&quot;</span><span class="p">;</span><span class="s2">&quot;stmoeller&quot;</span><span class="p">;</span><span class="s2">&quot;aN%36vwh&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>Lösung<a class="headerlink" href="#id3" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="c"># -Delimiter &quot;;&quot; - um den trenner zwischen den Daten in einer Zeile festzulegen</span>
+<span class="c"># -Encoding Default - damit die Datei als Windows 1251 geöffnet wird (Zeichenkodierung)</span>
+<span class="nv">$allusers</span> <span class="p">=</span> <span class="nb">Import-Csv</span> <span class="n">-Delimiter</span> <span class="s2">&quot;;&quot;</span> <span class="n">-Encoding</span> <span class="k">Default</span> <span class="s2">&quot;users_with_password.csv&quot;</span>
+
+<span class="c"># Ermittelt alle eindeutigen Abteilungen</span>
+<span class="nv">$abteilungen</span> <span class="p">=</span> <span class="nv">$allusers</span><span class="p">.</span><span class="n">Abteilung</span> <span class="p">|</span> <span class="nb">Get-Unique</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$abteilung</span> <span class="k">in</span> <span class="nv">$abteilungen</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c"># Domäne ist TEST.AT und die User sollen in TEST\Users abgelegt werden</span>
+    <span class="c"># der Pfad zur richtigen OU wird rückwärts angegeben</span>
+    <span class="nv">$path</span> <span class="p">=</span> <span class="s2">&quot;OU=Users,OU=TEST,DC=test,DC=at&quot;</span>
+
+    <span class="nv">$filter</span> <span class="p">=</span> <span class="s1">&#39;Name -eq &quot;&#39;</span> <span class="p">+</span> <span class="nv">$abteilung</span> <span class="p">+</span> <span class="s1">&#39;&quot;&#39;</span>
+
+    <span class="c"># Versucht das OU Objekt für die Abteilung zu bekommen</span>
+    <span class="c"># falls dies fehlschlägt ist in $org kein Wert</span>
+    <span class="nv">$org</span> <span class="p">=</span> <span class="nb">Get-ADOrganizationalUnit</span> <span class="n">-Filter</span> <span class="nv">$filter</span> <span class="n">-SearchBase</span> <span class="nv">$path</span>
+
+    <span class="c"># Wenn die OU noch nicht vorhanen ist wird diese mit dem Befehl erstellt</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">-Not</span> <span class="nv">$org</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">New-ADOrganizationalUnit</span> <span class="n">-Name</span> <span class="nv">$abteilung</span> <span class="n">-Path</span> <span class="nv">$path</span> <span class="n">-ProtectedFromAccidentalDeletion</span> <span class="nv">$False</span>
+    <span class="p">}</span>
+
+    <span class="c"># Fügt die neue OU zum Pfad hinzu</span>
+    <span class="nv">$path</span> <span class="p">=</span> <span class="s2">&quot;OU=&quot;</span> <span class="p">+</span> <span class="nv">$abteilung</span> <span class="p">+</span> <span class="s2">&quot;,&quot;</span> <span class="p">+</span> <span class="nv">$path</span>
+
+    <span class="c"># Ermittelt alle User mit der gegeben Abteilung</span>
+    <span class="nv">$users</span> <span class="p">=</span> <span class="nv">$allusers</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">Abteilung</span> <span class="o">-eq</span> <span class="nv">$abteilung</span><span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$user</span> <span class="k">in</span> <span class="nv">$users</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c"># Mit ConverTo-SecureString wird das Passwort gehashed, da bei New-AdUser kein klartext Passwort zulässig ist.</span>
+        <span class="nv">$password</span> <span class="p">=</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Password</span> <span class="p">|</span> <span class="nb">ConvertTo-SecureString</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span>
+
+        <span class="c"># Erstellt den AdUser</span>
+        <span class="c"># -Name - Username</span>
+        <span class="c"># -AccountPassword - das gehashte Passwort</span>
+        <span class="c"># -ChangePasswordAtLogon - das der User beim Login das Passwort ändern muss</span>
+        <span class="c"># -GivenName - Vorname</span>
+        <span class="c"># -Surname - Nachname</span>
+        <span class="c"># -Path - Pfad im AD</span>
+        <span class="c"># -Enable - Ob der Account aktiviert werden soll</span>
+        <span class="nb">New-AdUser</span> <span class="n">-Name</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Username</span> <span class="n">-AccountPassword</span> <span class="nv">$password</span> <span class="n">-ChangePasswordAtLogon</span> <span class="nv">$True</span> <span class="n">-GivenName</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Vorname</span> <span class="n">-Surname</span> <span class="nv">$user</span><span class="p">.</span><span class="n">Nachname</span> <span class="n">-Path</span> <span class="nv">$path</span> <span class="n">-Enabled</span> <span class="nv">$True</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tower-calculation.html" class="btn btn-neutral float-left" title="Zapfenrechnen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert B.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

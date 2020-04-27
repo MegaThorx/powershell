@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>String Manipulation &mdash; Powershell Guide  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Try-Catch" href="try-catch.html" />
+    <link rel="prev" title="Speichern von Skripten" href="ps1-files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Powershell Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Powershell Basics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hello-world.html">Hello World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comments.html">Kommentare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variables.html">Variablen und Datentypen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controlstructs.html">Kontrollstrukturen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpful-cmd-lets.html">Hilfreiche Cmd-Lets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ps1-files.html">Speichern von Skripten</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">String Manipulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kombinieren-von-strings">Kombinieren von Strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toupper">.ToUpper()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tolower">.ToLower()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contains-text">.Contains(Text)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#startswith-text">.StartsWith(Text)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#endswith-text">.EndsWith(Text)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-altertext-neuertext">.Replace(AlterText, NeuerText)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#substring-startindex-lange">.SubString(StartIndex, Länge)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trimstart-zeichenzumentfernen">.TrimStart(ZeichenZumEntfernen)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trimend-zeichenzumentfernen">.TrimEnd(ZeichenZumEntfernen)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="try-catch.html">Try-Catch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="piping.html">Piping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Funktionen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Beispiele</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Powershell Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Powershell Basics</a> &raquo;</li>
+        
+      <li>String Manipulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/basic-powershell/string-manipulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="string-manipulation">
+<h1>String Manipulation<a class="headerlink" href="#string-manipulation" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="kombinieren-von-strings">
+<h2>Kombinieren von Strings<a class="headerlink" href="#kombinieren-von-strings" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Natürlich lassen sich mehrere Strings auch zu einem gesamten String
+vereinigen. Dies wird auch Konkatenation genannt. Ob es sich dabei um
+einen String oder ein Stringliteral handelt, spielt keine Rolle. Die
+Konkatenation lässt sich mithilfe des <code class="docutils literal notranslate"><span class="pre">+</span></code>-Operators durchführen:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text1</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text2</span> <span class="p">=</span> <span class="s2">&quot;World&quot;</span>
+<span class="nv">$text_neu</span> <span class="p">=</span> <span class="nv">$text1</span> <span class="p">+</span> <span class="s2">&quot; &quot;</span> <span class="p">+</span> <span class="nv">$text2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="toupper">
+<h2>.ToUpper()<a class="headerlink" href="#toupper" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wandelt einen String in Großbuchstaben um.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">ToUpper</span><span class="p">()</span> <span class="c"># aus Hallo wird HALLO</span>
+<span class="c"># oder</span>
+<span class="p">(</span><span class="s2">&quot;Hallo&quot;</span><span class="p">).</span><span class="n">ToUpper</span><span class="p">()</span> <span class="c"># aus Hallo wird HALLO</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tolower">
+<h2>.ToLower()<a class="headerlink" href="#tolower" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wandelt einen String in Kleinbuchstaben um.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">ToLower</span><span class="p">()</span> <span class="c"># aus Hallo wird hallo</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contains-text">
+<h2>.Contains(Text)<a class="headerlink" href="#contains-text" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Prüft ob ein String einen bestimmte Zeichenkette enthält.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c"># Gibt Wahr zurück</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span> <span class="c"># Gibt Falsch zurück</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="startswith-text">
+<h2>.StartsWith(Text)<a class="headerlink" href="#startswith-text" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Prüft ob ein String mit bestimmte Zeichenkette beginnt.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s2">&quot;Ha&quot;</span><span class="p">)</span> <span class="c"># Gibt Wahr zurück</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s2">&quot;al&quot;</span><span class="p">)</span> <span class="c"># Gibt Falsch zurück</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="endswith-text">
+<h2>.EndsWith(Text)<a class="headerlink" href="#endswith-text" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Prüft ob ein String mit bestimmte Zeichenkette endet.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s2">&quot;lo&quot;</span><span class="p">)</span> <span class="c"># Gibt Wahr zurück</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s2">&quot;ll&quot;</span><span class="p">)</span> <span class="c"># Gibt Falsch zurück</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="replace-altertext-neuertext">
+<h2>.Replace(AlterText, NeuerText)<a class="headerlink" href="#replace-altertext-neuertext" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ersetzt eine bestimmte Zeichenkette in einem String mit einer anderen
+String.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;Hallo&quot;</span><span class="p">,</span> <span class="s2">&quot;World&quot;</span><span class="p">)</span> <span class="c"># Hallo wird mit World ersetzt</span>
+
+<span class="c">####</span>
+
+<span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Test&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s2">&quot;es&quot;</span><span class="p">,</span> <span class="s2">&quot;se&quot;</span><span class="p">)</span> <span class="c"># Der neue Wert ist `Tset`</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="substring-startindex-lange">
+<h2>.SubString(StartIndex, Länge)<a class="headerlink" href="#substring-startindex-lange" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit SubString kann man einen Teil eines Strings anhand der Position
+entfernen</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">SubString</span><span class="p">(</span><span class="n">2</span><span class="p">)</span> <span class="c"># Entfernt die ersten zwei Zeichen &#39;llo&#39;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">SubString</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">2</span><span class="p">)</span> <span class="c"># Gibt zwei Zeichen ab dem ersten Zeichen aus &#39;Ha&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="trimstart-zeichenzumentfernen">
+<h2>.TrimStart(ZeichenZumEntfernen)<a class="headerlink" href="#trimstart-zeichenzumentfernen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ersetzt eine bestimmte Zeichenkette am Anfang des Textes.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;    Hallo&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">TrimStart</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="c"># Entfernt alle Leerzeichen am Anfang des Stringes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="trimend-zeichenzumentfernen">
+<h2>.TrimEnd(ZeichenZumEntfernen)<a class="headerlink" href="#trimend-zeichenzumentfernen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ersetzt eine bestimmte Zeichenkette am Ende des Textes.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$text</span> <span class="p">=</span> <span class="s2">&quot;Hallo------&quot;</span>
+<span class="nv">$text</span><span class="p">.</span><span class="n">TrimStart</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="c"># Entfernt alle - am Ende des Stringes</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="try-catch.html" class="btn btn-neutral float-right" title="Try-Catch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ps1-files.html" class="btn btn-neutral float-left" title="Speichern von Skripten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Robert B.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
