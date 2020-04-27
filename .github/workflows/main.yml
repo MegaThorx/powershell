@@ -28,5 +28,5 @@ jobs:
         # The folder containing your sphinx docs.
         docs-folder: /usr/bin/git
         # The command used to build your documentation.
-        build-command: make html
+        # build-command: ./make.bat
  
