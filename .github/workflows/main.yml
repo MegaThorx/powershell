@@ -28,10 +28,6 @@ jobs:
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v1.4.1
       with:
-        # GitHub repository where assets will be deployed (default current)
-        repo: https://github.com/MegaThorx/powershell.github.io.gi# optional
-        # Git branch where assets will be deployed
-        target_branch: master # optional, default is gh-pages
         # Create incremental commit instead of doing push force
         keep_history: false # optional, default is false
         # Allow an empty commit to be created
@@ -45,4 +41,5 @@ jobs:
         # Commit message
         commit_message: "Update documentation"# optional
         # Write the given domain name to the CNAME file
- 
+      env:
+        GITHUB_PAT: ${{ secrets.PAT }}
