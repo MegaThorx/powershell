@@ -25,6 +25,9 @@ jobs:
         name: DocumentationHTML
         path: ./_build/html/
         
+    - name: Add .nojekyll file
+      run: touch ./_build/html/.nojekyll
+                
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v1.4.1
       with:
