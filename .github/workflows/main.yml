@@ -26,7 +26,7 @@ jobs:
       uses: ammaraskar/sphinx-action@0.4
       with:
         # The folder containing your sphinx docs.
-        docs-folder: $GITHUB_WORKSPACE
+        docs-folder: /usr/bin/git
         # The command used to build your documentation.
         build-command: make html
  
